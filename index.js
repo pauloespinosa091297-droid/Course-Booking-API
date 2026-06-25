@@ -35,7 +35,7 @@ db.once('open', () => console.log('Now connected to MongoDB Atlas'));
 // you can set the specific needs of your application here
 const corsOption = {
     // origin of the request
-    origin: ['http://localhost:8000', 'http://localhost:5173'], // allows requests from this clientURL only. This is an array because multiple URL can be added for connection
+    origin: ['http://localhost:8000', 'http://localhost:5173', 'https://coursebooking-delta.vercel.app/'], // allows requests from this clientURL only. This is an array because multiple URL can be added for connection
     // methods: ['GET', 'POST'], // allow only specified HTTP methods
     // allowedHeaders: ['Content-Type', 'Authorization'], // allow only specified headers
     credentials: true, // allows credentials (e.g. cookies, authorization headers)
