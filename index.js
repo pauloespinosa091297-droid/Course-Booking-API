@@ -29,21 +29,19 @@ db.on('error', console.error.bind(console, 'connection error'));
 db.once('open', () => console.log('Now connected to MongoDB Atlas'));
 
 // [SECTION] CORS Configuration
-// Configured FIRST so it is fully defined before it is applied to the app middleware layer
+// Dynamically accepts any incoming request origin to bypass all hardcoded array typos entirely
 const corsOption = {
-    origin: [
-        'http://localhost:8000', 
-        'http://localhost:5173', 
-        'https://coursebooking-delta.vercel.app',
-        'https://coursebooking-git-master-pauloespinosa091297-droids-projects.vercel.app'
-    ],
+    origin: function (origin, callback) {
+        // Automatically allow local testing, postman, or any web browser deployment origin
+        callback(null, true);
+    },
     credentials: true,
     optionsSuccessStatus: 200
 };
 
 // [SECTION] Middlewares
 app.use(express.json());
-app.use(cors(corsOption)); // Now safely passes the valid corsOption object
+app.use(cors(corsOption)); // Safely passes the dynamic corsOption object
 
 // [SECTION] Google Login (Commented out as per original setup)
 // app.use(session({
